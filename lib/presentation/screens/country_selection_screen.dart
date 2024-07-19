@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sports/presentation/cubit/country_cubit.dart';
 import 'package:sports/presentation/cubit/country_state.dart';
 
+int cuntryGlob = 0;
+
 class CountrySelectionScreen extends StatelessWidget {
   const CountrySelectionScreen({super.key});
 
@@ -29,6 +31,8 @@ class CountrySelectionScreen extends StatelessWidget {
                       height: 50,
                       width: 50),
                   onTap: () {
+                    cuntryGlob = index;
+                    
                     // navigate to next screen
                   },
                 );

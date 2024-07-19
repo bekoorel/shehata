@@ -22,7 +22,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sports/presentation/cubit/country_cubit.dart';
 import 'package:sports/presentation/screens/country_selection_screen.dart';
-import 'presentation/screens/splash_screen.dart';
 import 'presentation/screens/onboarding_screen.dart';
 import 'presentation/screens/login_screen.dart';
 import 'presentation/screens/home_screen.dart';
@@ -65,7 +64,7 @@ class MyApp extends StatelessWidget {
           '/': (context) => HomeScreen(),
           '/country-selection': (context) => const CountrySelectionScreen(),
           '/leagues': (context) => LeaguesScreen(
-                countryId: ModalRoute.of(context)!.settings.arguments as int,
+                countryId: cuntryGlob,
               ),
           '/teams': (context) => TeamsScreen(
               leagueId: ModalRoute.of(context)!.settings.arguments as int),

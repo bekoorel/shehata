@@ -42,21 +42,27 @@ class CountriesScreen extends StatelessWidget {
                     height: 50,
                     width: 50,
                   ),
-                  // Image.network(country.image ??
-                  //     'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.computerhope.com%2Fjargon%2Fe%2Ferror.htm&psig=AOvVaw2Wyp1Tg2obBJdYOqiLBtVk&ust=1721438648170000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCNjhruz4sYcDFQAAAAAdAAAAABAE'
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => BlocProvider(
-                          create: (context) =>
-                              LeaguesCubit(context.read<Repository>()),
-                          child: LeaguesScreen(
-                            countryId: country.id,
+                    if (country.id != null) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => BlocProvider(
+                            create: (context) =>
+                                LeaguesCubit(context.read<Repository>()),
+                            child: LeaguesScreen(
+                              countryId: country.id!,
+                            ),
                           ),
                         ),
-                      ),
-                    );
+                      );
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Country ID is null'),
+                        ),
+                      );
+                    }
                   },
                 );
               },

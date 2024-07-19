@@ -208,19 +208,33 @@
 // }
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sports/data/models/country.dart';
+import 'package:sports/presentation/screens/country_selection_screen.dart';
 import '../cubit/leagues_cubit.dart';
 
-class LeaguesScreen extends StatelessWidget {
+class LeaguesScreen extends StatefulWidget {
+  final int countryId;
+
+  const LeaguesScreen({super.key, required this.countryId});
+
+  @override
+  State<LeaguesScreen> createState() => _LeaguesScreenState();
+}
+
+class _LeaguesScreenState extends State<LeaguesScreen> {
+/*
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // final countryId = ModalRoute.of(context)!.settings.arguments as int;
+   
+  }*/
+
   @override
   Widget build(BuildContext context) {
-    final countryId = ModalRoute.of(context)!.settings.arguments as int;
-    context.read<LeaguesCubit>().fetchLeagues(countryId);
-
     return Scaffold(
       appBar: AppBar(title: const Text('Leagues')),
       body: BlocBuilder<LeaguesCubit, LeaguesState>(
         builder: (context, state) {
+          context.read<LeaguesCubit>().fetchLeagues(cuntryGlob);
           if (state is LeaguesLoading) {
             return const Center(child: CircularProgressIndicator());
           } else if (state is LeaguesLoaded) {
